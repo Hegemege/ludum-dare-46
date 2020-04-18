@@ -1,0 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityUtilities;
+
+public class #SCRIPTNAME# : MonoBehaviour
+{
+    void Awake()
+    {
+        #NOTRIM#
+    }
+
+    void Update()
+    {
+        #NOTRIM#
+    }
+}
