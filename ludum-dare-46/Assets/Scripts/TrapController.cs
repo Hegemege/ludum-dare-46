@@ -10,21 +10,27 @@ public class TrapController : PoolableEndlessRunnerResetable
 
     private bool _sprung;
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+
+        if (_sprung)
+        {
+            _animator.SetTrigger("Reset");
+            _sprung = false;
+        }
+    }
+
     public void Spring()
     {
+        if (_sprung) return;
+
         _sprung = true;
         _animator.SetTrigger("Trigger");
     }
 
     public override void Reset()
     {
-        if (_sprung)
-        {
-            _animator.SetTrigger("Reset");
-        }
-
-        _sprung = false;
-
         base.Reset();
     }
 }

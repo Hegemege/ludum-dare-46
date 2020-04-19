@@ -6210,10 +6210,105 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 649281326121935679, guid: 09bf9f8e8b4438a48b8c3908da809f8d,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 649281326121935679, guid: 09bf9f8e8b4438a48b8c3908da809f8d,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 649281326121935679, guid: 09bf9f8e8b4438a48b8c3908da809f8d,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 649281326121935679, guid: 09bf9f8e8b4438a48b8c3908da809f8d,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 649281326121935679, guid: 09bf9f8e8b4438a48b8c3908da809f8d,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651834053349897658, guid: 09bf9f8e8b4438a48b8c3908da809f8d,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651834053349897658, guid: 09bf9f8e8b4438a48b8c3908da809f8d,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651834053349897658, guid: 09bf9f8e8b4438a48b8c3908da809f8d,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651834053349897658, guid: 09bf9f8e8b4438a48b8c3908da809f8d,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651834053349897658, guid: 09bf9f8e8b4438a48b8c3908da809f8d,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3250288534428774023, guid: 09bf9f8e8b4438a48b8c3908da809f8d,
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4397587585374151285, guid: 09bf9f8e8b4438a48b8c3908da809f8d,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4397587585374151285, guid: 09bf9f8e8b4438a48b8c3908da809f8d,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4397587585374151285, guid: 09bf9f8e8b4438a48b8c3908da809f8d,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4397587585374151285, guid: 09bf9f8e8b4438a48b8c3908da809f8d,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936140596956278473, guid: 09bf9f8e8b4438a48b8c3908da809f8d,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936140596956278473, guid: 09bf9f8e8b4438a48b8c3908da809f8d,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936140596956278473, guid: 09bf9f8e8b4438a48b8c3908da809f8d,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936140596956278473, guid: 09bf9f8e8b4438a48b8c3908da809f8d,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936140596956278473, guid: 09bf9f8e8b4438a48b8c3908da809f8d,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8198450008729389291, guid: 09bf9f8e8b4438a48b8c3908da809f8d,
         type: 3}

@@ -20,12 +20,22 @@ public class GameManager : GenericManager<GameManager>, ILoadedManager
     public PlayerController PlayerController;
     public CameraController CameraController;
 
+    public float DistanceTracker = 0f;
+
     public void Initialize()
     {
         if (!InitializeSingleton(this)) return;
     }
 
     public void PostInitialize() { }
+
+    public void ResetLevel()
+    {
+        PlayerController = null;
+        CameraController = null;
+        DistanceTracker = 0f;
+        PoolManager.Instance.ResetPools();
+    }
 
     public void TriggerReset()
     {
@@ -35,6 +45,8 @@ public class GameManager : GenericManager<GameManager>, ILoadedManager
 
         var moveBackDistance = cycles * ResetStepZ;
         var moveOffset = Vector3.forward * -1f * moveBackDistance;
+
+        DistanceTracker += moveBackDistance;
 
         // Reset objects that are too far back
         KillEndlessObjects?.Invoke(CameraController.BehindKillPlane.transform.position, Vector3.forward);

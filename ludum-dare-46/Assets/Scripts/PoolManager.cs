@@ -30,17 +30,25 @@ public class PoolManager : GenericManager<PoolManager>, ILoadedManager
     {
         foreach (var environmentPool in EnvironmentSpawnables)
         {
-            environmentPool.Pool.Clear();
+            ResetPool(environmentPool);
         }
 
         foreach (var obstaclePool in ObstacleSpawnables)
         {
-            obstaclePool.Pool.Clear();
+            ResetPool(obstaclePool);
         }
 
-        ExplosionParticlePool.Pool.Clear();
-        DustParticlePool.Pool.Clear();
-        DeathParticlePool.Pool.Clear();
+        ResetPool(ExplosionParticlePool);
+        ResetPool(DustParticlePool);
+        ResetPool(DeathParticlePool);
+    }
+
+    private void ResetPool<T>(GenericComponentPool<T> pool)
+    {
+        foreach (var obj in pool.Pool)
+        {
+            obj.gameObject.SetActive(false);
+        }
     }
 
     public GameObject GetRandomEnvironmentSpawnable()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityUtilities;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -50,6 +51,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        GameManager.Instance.DistanceTracker = 0f;
         GameManager.Instance.PlayerController = this;
         _rb = GetComponentInChildren<Rigidbody>();
         _flyingParticles = GetComponentInChildren<ParticleSystem>();
@@ -82,7 +84,17 @@ public class PlayerController : MonoBehaviour
             _emissionModule.rateOverTime = 0f;
         }
 
-        if (State == PlayerState.Dead) return;
+        if (State == PlayerState.Dead)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                GameManager.Instance.ResetLevel();
+                SceneManager.LoadScene("main");
+                return;
+            }
+
+            return;
+        }
 
         if (Input.GetKeyDown(KeyCode.Space) && CanBoost)
         {
@@ -246,6 +258,11 @@ public class PlayerController : MonoBehaviour
             _rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePosition;
             CanBoost = false;
 
+            EndCanvas.SetActive(true);
+            EndCanvas.transform.rotation = Quaternion.identity;
+
+            var totalDistance = GameManager.Instance.DistanceTracker + (transform.position - _startPosition).z;
+            DistanceText.text = Mathf.FloorToInt(totalDistance).ToString() + "m";
 
             // Move the player upside down into the spikes
             //transform.rotation = Quaternion.identity * Quaternion.Euler(0f, 0f, 180f);
