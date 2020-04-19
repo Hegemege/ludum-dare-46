@@ -13,8 +13,9 @@ public class BuildingController : PoolableEndlessRunnerResetable
     [SerializeField]
     private Color _unlitColor;
 
-    void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         foreach (var window in _windows)
         {
             window.enabled = Random.Range(0f, 1f) > 0.05f;

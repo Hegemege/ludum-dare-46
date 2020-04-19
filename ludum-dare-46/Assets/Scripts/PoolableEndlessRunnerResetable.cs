@@ -21,7 +21,7 @@ public class PoolableEndlessRunnerResetable : EndlessRunnerResetable, IResetable
     {
         // Resets the object back to the pool if the position of object is beyond the
         // given kill plane defined as a point and normal
-        var planeToObject = transform.position - point;
+        var planeToObject = (transform.position - point).normalized;
         if (Vector3.Dot(planeToObject, normal) < 0)
         {
             Reset();
@@ -29,5 +29,8 @@ public class PoolableEndlessRunnerResetable : EndlessRunnerResetable, IResetable
     }
 
     public virtual void Initialize() { }
-    public virtual void Reset() { }
+    public virtual void Reset()
+    {
+        gameObject.SetActive(false);
+    }
 }

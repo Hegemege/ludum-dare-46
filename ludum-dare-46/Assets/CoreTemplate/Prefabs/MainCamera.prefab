@@ -193,7 +193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _easing: 0.05
   Spawner: {fileID: 8410421865861909101}
-  BehindKillPlane: {fileID: 346707770572933929}
+  BehindKillPlane: {fileID: 8171874440413674617}
   _introAnimationLength: 4
 --- !u!1 &8171874440413674617
 GameObject:

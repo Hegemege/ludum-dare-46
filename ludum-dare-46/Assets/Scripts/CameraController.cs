@@ -19,7 +19,7 @@ public class CameraController : EndlessRunnerResetable
     [SerializeField]
     private BoxCollider Spawner;
 
-    public Transform BehindKillPlane;
+    public GameObject BehindKillPlane;
 
     private Camera _camera;
 
@@ -38,6 +38,9 @@ public class CameraController : EndlessRunnerResetable
         // Move the spawner at the start next to the camera
         Spawner.transform.position = new Vector3(0f, 0f, transform.position.z);
         Spawner.transform.rotation = Quaternion.identity;
+
+        // Keep the kill plane behind the camera at 10 units
+        BehindKillPlane.transform.position = transform.position + Vector3.back * 10f;
     }
 
     private IEnumerator AnimateFarClipPlane()
