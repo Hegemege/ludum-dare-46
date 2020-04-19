@@ -9,6 +9,8 @@ public class PoolManager : GenericManager<PoolManager>, ILoadedManager
     [HideInInspector]
     public List<EnvironmentSpawnablePool> EnvironmentSpawnables;
 
+    public ParticleSystemPool ExplosionParticlePool;
+
     public void Initialize()
     {
         if (!InitializeSingleton(this)) return;
@@ -24,6 +26,8 @@ public class PoolManager : GenericManager<PoolManager>, ILoadedManager
         {
             environmentPool.Pool.Clear();
         }
+
+        ExplosionParticlePool.Pool.Clear();
     }
 
     public GameObject GetRandomEnvironmentSpawnable()

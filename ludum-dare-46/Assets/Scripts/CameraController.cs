@@ -49,7 +49,7 @@ public class CameraController : EndlessRunnerResetable
         while (t < _introAnimationLength)
         {
             var animationT = Mathf.Clamp01(t / _introAnimationLength);
-            _camera.farClipPlane = Mathf.Lerp(0f, _targetFarPlane, animationT);
+            _camera.farClipPlane = Mathf.Lerp(1f, _targetFarPlane, animationT);
 
             t += Time.deltaTime;
             yield return null;

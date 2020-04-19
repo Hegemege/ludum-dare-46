@@ -24,6 +24,7 @@
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
+                float4 color : COLOR;
             };
 
             struct v2f
@@ -32,6 +33,7 @@
                 float4 vertex : SV_POSITION;
                 float4 screenPos : TEXCOORD1;
                 float distance : POSITION1;
+                float4 color : COLOR;
             };
 
             sampler2D _MainTex;
@@ -48,6 +50,7 @@
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 o.screenPos = ComputeScreenPos(o.vertex);
                 o.distance = length(WorldSpaceViewDir(v.vertex));
+                o.color = v.color;
                 return o;
             }
 
@@ -68,7 +71,7 @@
 
                 float threshold = thresholdMatrix[pixelPos.x % 4][pixelPos.y % 4] / 17;
 
-                float alpha = _Alpha *(1.0 - i.distance * _ProjectionParams.w);
+                float alpha = min(_Alpha *(1.0 - i.distance * _ProjectionParams.w), col.a) * _Color.a * i.color.a;
 
                 clip(alpha - threshold);
 

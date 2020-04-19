@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3940144413305776327}
   m_Layer: 0
   m_Name: Street
-  m_TagString: Untagged
+  m_TagString: Street
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 3431032336116406702}
   m_Layer: 0
   m_Name: Left
-  m_TagString: Untagged
+  m_TagString: Street
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,9 +140,9 @@ GameObject:
   - component: {fileID: 4319781425736165745}
   - component: {fileID: 2160469732848429906}
   - component: {fileID: 5919417335157541792}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Base
-  m_TagString: Untagged
+  m_TagString: Street
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -215,7 +215,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5130685329979116738}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c8b2888d9b59e30479308e9f707d4b33, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 6263935323292924445}
   m_Layer: 9
   m_Name: StreetSpawnTrigger
-  m_TagString: Untagged
+  m_TagString: Street
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 3601960694568656412}
   m_Layer: 0
   m_Name: Right
-  m_TagString: Untagged
+  m_TagString: Street
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

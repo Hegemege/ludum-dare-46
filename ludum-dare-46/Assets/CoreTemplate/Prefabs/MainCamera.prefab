@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3228512296636758598}
   m_Layer: 10
   m_Name: CameraSpawner
-  m_TagString: Untagged
+  m_TagString: CameraSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50b5019b8fe61ce4e8d61c641a80dbb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _easing: 0.05
+  _easing: 0.9
   Spawner: {fileID: 8410421865861909101}
   BehindKillPlane: {fileID: 8171874440413674617}
   _introAnimationLength: 4
