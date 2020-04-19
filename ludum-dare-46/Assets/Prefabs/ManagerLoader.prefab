@@ -130,7 +130,9 @@ Transform:
   - {fileID: 6095853285535505733}
   - {fileID: 8815383946749377127}
   - {fileID: 5719537005296923850}
+  - {fileID: 8610038502638155214}
   - {fileID: 7704752572069732435}
+  - {fileID: 2449182978390681177}
   m_Father: {fileID: 3115917358010373785}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -149,6 +151,8 @@ MonoBehaviour:
   EnvironmentSpawnables: []
   ObstacleSpawnables: []
   ExplosionParticlePool: {fileID: 6185833009938051021}
+  DustParticlePool: {fileID: 3925357893638770394}
+  DeathParticlePool: {fileID: 2183451104444092975}
 --- !u!1 &3367436651627857463
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,6 +247,53 @@ MonoBehaviour:
     type: 3}
   WillGrow: 1
   Container: {fileID: 3638199405324393247}
+--- !u!1 &4268754680729797876
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2449182978390681177}
+  - component: {fileID: 2183451104444092975}
+  m_Layer: 0
+  m_Name: DeathParticlePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2449182978390681177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4268754680729797876}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7484371682560205313}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2183451104444092975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4268754680729797876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd0dcd86b6919e84c8aafd00b60e80c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PooledObjectPrefab: {fileID: 4601940392342309239, guid: 0d340404239af6b48869a1c91e161893,
+    type: 3}
+  WillGrow: 1
+  Container: {fileID: 4268754680729797876}
 --- !u!1 &4339968882025276379
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,6 +528,53 @@ MonoBehaviour:
     type: 3}
   WillGrow: 1
   Container: {fileID: 7570558809051226919}
+--- !u!1 &8225949794627562285
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8610038502638155214}
+  - component: {fileID: 5024087488969887530}
+  m_Layer: 0
+  m_Name: TrapPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8610038502638155214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8225949794627562285}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7484371682560205313}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5024087488969887530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8225949794627562285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f403b42b938b20f4c945ee00c3acf886, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PooledObjectPrefab: {fileID: 5278345557122091546, guid: 901f49790f9398545a53d3990dd94b62,
+    type: 3}
+  WillGrow: 1
+  Container: {fileID: 8225949794627562285}
 --- !u!1 &8338731957756620005
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +604,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7484371682560205313}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3925357893638770394
 MonoBehaviour:

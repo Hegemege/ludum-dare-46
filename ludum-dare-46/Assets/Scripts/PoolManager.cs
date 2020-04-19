@@ -14,6 +14,7 @@ public class PoolManager : GenericManager<PoolManager>, ILoadedManager
 
     public ParticleSystemPool ExplosionParticlePool;
     public ParticleSystemPool DustParticlePool;
+    public ParticleSystemPool DeathParticlePool;
 
     public void Initialize()
     {
@@ -39,6 +40,7 @@ public class PoolManager : GenericManager<PoolManager>, ILoadedManager
 
         ExplosionParticlePool.Pool.Clear();
         DustParticlePool.Pool.Clear();
+        DeathParticlePool.Pool.Clear();
     }
 
     public GameObject GetRandomEnvironmentSpawnable()

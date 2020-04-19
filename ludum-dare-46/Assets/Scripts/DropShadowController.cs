@@ -7,6 +7,10 @@ public class DropShadowController : MonoBehaviour
 {
     public PlayerController PlayerController;
 
+    public GameObject Marker;
+
+    public GameObject BoostIndicator;
+
     private Vector3 _startPosition;
 
     void Awake()
@@ -19,6 +23,8 @@ public class DropShadowController : MonoBehaviour
     {
         // Always position the dropshadow below the player
         TrackPlayer();
+
+        BoostIndicator.SetActive(PlayerController.CanBoost);
     }
 
     private void TrackPlayer()
@@ -26,7 +32,7 @@ public class DropShadowController : MonoBehaviour
         transform.position = new Vector3(PlayerController.transform.position.x, _startPosition.y, PlayerController.transform.position.z);
         // Set scale based on height
         var scaleT = Mathf.Clamp(PlayerController.transform.position.y / 5f, 0f, 1f);
-        var scale = Mathf.Lerp(1f, 0.25f, scaleT);
-        transform.localScale = Vector3.one * scale;
+        var scale = Mathf.Lerp(1.5f, 0.5f, scaleT);
+        Marker.transform.localScale = Vector3.one * scale;
     }
 }

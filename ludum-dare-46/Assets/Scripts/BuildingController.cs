@@ -20,6 +20,10 @@ public class BuildingController : PoolableEndlessRunnerResetable
         {
             window.enabled = Random.Range(0f, 1f) > 0.05f;
             var color = Random.Range(0f, 1f) > 0.65f ? _litColor : _unlitColor;
+            if (Random.Range(0f, 1f) > 0.995f)
+            {
+                color = Color.red;
+            }
             window.material.color = color;
         }
     }

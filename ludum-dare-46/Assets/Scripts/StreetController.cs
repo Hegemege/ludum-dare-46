@@ -9,6 +9,14 @@ public class StreetController : MonoBehaviour
 
     public int SpawnLimiter = 0;
 
+    private List<Vector3> _spawnPositions = new List<Vector3> {
+        new Vector3(-2.5f, 0f, -2.5f),
+        new Vector3(2.5f, 0f, -2.5f),
+        new Vector3(0f, 0f, 0f),
+        new Vector3(-2.5f, 0f, 2.5f),
+        new Vector3(2.5f, 0f, 2.5f)
+    };
+
     void Awake()
     {
 
@@ -42,16 +50,18 @@ public class StreetController : MonoBehaviour
 
 
         // Spawn a random obstacle
-        if (Random.Range(0f, 1f) > 0.75f)
+        foreach (var position in _spawnPositions)
         {
-            var obstacle = PoolManager.Instance.GetRandomObstacle();
-            var offsetX = Random.Range(-4.5f, 4.5f);
-            var offsetZ = Random.Range(-4.5f, 4.5f);
-            var offset = new Vector3(offsetX, 0f, offsetZ);
+            if (Random.Range(0f, 1f) > 0.8f)
+            {
+                var obstacle = PoolManager.Instance.GetRandomObstacle();
+                var offsetX = Random.Range(-1f, 1f);
+                var offsetZ = Random.Range(-1f, 1f);
+                var offset = new Vector3(offsetX, 0f, offsetZ);
 
-            obstacle.transform.position = transform.position + offset;
+                obstacle.transform.position = transform.position + position + offset;
+            }
         }
-
 
     }
 }

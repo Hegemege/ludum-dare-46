@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityUtilities;
-
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -42,6 +42,11 @@ public class PlayerController : MonoBehaviour
     private ParticleSystem.EmissionModule _emissionModule;
     private float _flyingParticlesStartEmissionRate;
 
+    public bool CanBoost;
+
+    public GameObject EndCanvas;
+    public TextMeshProUGUI DistanceText;
+
 
     void Awake()
     {
@@ -56,17 +61,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            BoostExplode();
-        }
-
         // Determine animation state changes between flying and running
         // Explosions cause the sheep to tumble
         // If it lands back on it's feet, it will run and jump forward
         // After landing, ease the rotations so the sheep will run forward
         _animator.SetBool("Running", State == PlayerState.Running);
         _animator.SetBool("Flying", State == PlayerState.Flying);
+        _animator.SetBool("Idle", State == PlayerState.Dead);
 
         if (State == PlayerState.Flying)
         {
@@ -80,10 +81,19 @@ public class PlayerController : MonoBehaviour
         {
             _emissionModule.rateOverTime = 0f;
         }
+
+        if (State == PlayerState.Dead) return;
+
+        if (Input.GetKeyDown(KeyCode.Space) && CanBoost)
+        {
+            BoostExplode();
+        }
     }
 
     public void BoostExplode()
     {
+        CanBoost = false;
+
         var ps = PoolManager.Instance.ExplosionParticlePool.GetPooledObject();
         ps.gameObject.transform.position = transform.position + Vector3.up * 0.5f;
 
@@ -108,6 +118,8 @@ public class PlayerController : MonoBehaviour
 
     public void ExplosionHit()
     {
+        if (State == PlayerState.Dead) return;
+
         if (State == PlayerState.Running)
         {
             _startFlyingTimer = 0f;
@@ -118,6 +130,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (State == PlayerState.Dead) return;
+
         var dt = Time.fixedDeltaTime;
 
         // Add some extra thrust if player is moving too slow and is on feet
@@ -169,6 +183,8 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
+        if (State == PlayerState.Dead) return;
+
         var ownCollider = other.contacts[0].thisCollider;
         // If the upper collider hits something, start "tumbling"
         if (ownCollider.CompareTag("PlayerUpperCollider"))
@@ -188,6 +204,12 @@ public class PlayerController : MonoBehaviour
 
                 State = PlayerState.Running;
 
+                // Dust
+                if (Mathf.Abs(other.relativeVelocity.y) > 3f)
+                {
+                    var ps = PoolManager.Instance.DustParticlePool.GetPooledObject();
+                    ps.gameObject.transform.position = transform.position + Vector3.forward * 0.5f;
+                }
             }
 
         }
@@ -204,11 +226,34 @@ public class PlayerController : MonoBehaviour
         {
             ObstacleExplode();
 
+            // Give an extra boost for each hit explosion boost
+            CanBoost = true;
+
             var trigger = other.GetComponent<ExplosionTrigger>();
             if (trigger != null && trigger.Root != null)
             {
                 trigger.Root.SetActive(false);
             }
+        }
+
+        if (other.CompareTag("Trap"))
+        {
+            other.GetComponentInParent<TrapController>().Spring();
+            // Stop player
+            State = PlayerState.Dead;
+            _rb.velocity = Vector3.zero;
+            _rb.angularVelocity = Vector3.zero;
+            _rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePosition;
+            CanBoost = false;
+
+
+            // Move the player upside down into the spikes
+            //transform.rotation = Quaternion.identity * Quaternion.Euler(0f, 0f, 180f);
+            //transform.position = other.gameObject.transform.position + Vector3.up;
+
+            // Spawn death particles
+            var ps = PoolManager.Instance.DeathParticlePool.GetPooledObject();
+            ps.gameObject.transform.position = transform.position;
         }
     }
 }

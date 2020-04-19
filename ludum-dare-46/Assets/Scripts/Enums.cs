@@ -4,4 +4,5 @@ public enum PlayerState
     Running = 1,
     Flying = 2,
     Tumbling = 3,
+    Dead = 4,
 }
