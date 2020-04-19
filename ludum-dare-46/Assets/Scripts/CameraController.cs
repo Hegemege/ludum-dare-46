@@ -49,7 +49,7 @@ public class CameraController : EndlessRunnerResetable
         while (t < _introAnimationLength)
         {
             var animationT = Mathf.Clamp01(t / _introAnimationLength);
-            _camera.farClipPlane = Mathf.Lerp(1f, _targetFarPlane, animationT);
+            _camera.farClipPlane = Mathf.Lerp(5f, _targetFarPlane, animationT);
 
             t += Time.deltaTime;
             yield return null;
@@ -73,6 +73,7 @@ public class CameraController : EndlessRunnerResetable
         var farClipPlane = _camera.farClipPlane;
         var spawnerTargetPosition = new Vector3(0f, 0f, transform.position.z + farClipPlane);
         Spawner.transform.position = Vector3.Lerp(Spawner.transform.position, spawnerTargetPosition, 0.1f);
+        Spawner.transform.position = new Vector3(Spawner.transform.position.x, 0f, Spawner.transform.position.z);
         Spawner.transform.rotation = Quaternion.identity;
     }
 

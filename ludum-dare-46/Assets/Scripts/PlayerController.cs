@@ -38,11 +38,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _steeringForce;
 
+    private ParticleSystem _flyingParticles;
+    private ParticleSystem.EmissionModule _emissionModule;
+    private float _flyingParticlesStartEmissionRate;
+
 
     void Awake()
     {
         GameManager.Instance.PlayerController = this;
         _rb = GetComponentInChildren<Rigidbody>();
+        _flyingParticles = GetComponentInChildren<ParticleSystem>();
+        _emissionModule = _flyingParticles.emission;
+        _flyingParticlesStartEmissionRate = _emissionModule.rateOverTime.constant;
         _startPosition = transform.position;
         State = PlayerState.Running;
     }
@@ -60,6 +67,19 @@ public class PlayerController : MonoBehaviour
         // After landing, ease the rotations so the sheep will run forward
         _animator.SetBool("Running", State == PlayerState.Running);
         _animator.SetBool("Flying", State == PlayerState.Flying);
+
+        if (State == PlayerState.Flying)
+        {
+            _emissionModule.rateOverTime = _flyingParticlesStartEmissionRate;
+        }
+        else if (State == PlayerState.Tumbling)
+        {
+            _emissionModule.rateOverTime = _flyingParticlesStartEmissionRate / 2f;
+        }
+        else
+        {
+            _emissionModule.rateOverTime = 0f;
+        }
     }
 
     public void BoostExplode()
@@ -183,6 +203,12 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("ExplosionTrigger"))
         {
             ObstacleExplode();
+
+            var trigger = other.GetComponent<ExplosionTrigger>();
+            if (trigger != null && trigger.Root != null)
+            {
+                trigger.Root.SetActive(false);
+            }
         }
     }
 }

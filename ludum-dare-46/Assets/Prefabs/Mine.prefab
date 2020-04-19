@@ -728,6 +728,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1797350051814888177}
+  - component: {fileID: 5832025740908070875}
   m_Layer: 0
   m_Name: Mine
   m_TagString: Untagged
@@ -751,6 +752,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 30.077002, y: 0, z: 21.048}
+--- !u!114 &5832025740908070875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797350051814888174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2969877abb81054eac5f21c241a34da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1797350050187110204
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -823,6 +836,11 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 8085270459606927064, guid: d7d52eec3babd0a48a4ff7425215a847,
+        type: 3}
+      propertyPath: Root
+      value: 
+      objectReference: {fileID: 1797350051814888174}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7d52eec3babd0a48a4ff7425215a847, type: 3}
 --- !u!4 &278521861727389870 stripped

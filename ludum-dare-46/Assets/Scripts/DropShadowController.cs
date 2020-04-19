@@ -15,7 +15,7 @@ public class DropShadowController : MonoBehaviour
         TrackPlayer();
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
         // Always position the dropshadow below the player
         TrackPlayer();
