@@ -9,6 +9,8 @@ TagManager:
   - PlayerLowerCollider
   - Street
   - CameraSpawner
+  - Ramp
+  - ExplosionTrigger
   layers:
   - Default
   - TransparentFX
@@ -23,8 +25,8 @@ TagManager:
   - CameraSpawner
   - PlayerDeathTrigger
   - Street
-  - 
-  - 
+  - Ramp
+  - ExplosionTrigger
   - 
   - 
   - 

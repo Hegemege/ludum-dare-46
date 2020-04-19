@@ -25,12 +25,19 @@ public class PlayerController : MonoBehaviour
     private float BoostForceMax;
 
     [SerializeField]
+    private float ExplosionForceMin;
+    [SerializeField]
+    private float ExplosionForceMax;
+
+
+    [SerializeField]
     private LayerMask StreetLayerMask;
 
     private float _startFlyingTimer;
 
     [SerializeField]
     private float _steeringForce;
+
 
     void Awake()
     {
@@ -44,15 +51,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // Cause an explosion
-            var ps = PoolManager.Instance.ExplosionParticlePool.GetPooledObject();
-            ps.gameObject.transform.position = transform.position + Vector3.up * 0.5f;
-
-            var randomForwardForce = Vector3.forward * 2f + Vector3.up * 4f + Random.onUnitSphere;
-            randomForwardForce.Normalize();
-            ExplosionHit();
-            _rb.AddForce(randomForwardForce * Random.Range(BoostForceMin, BoostForceMax), ForceMode.Impulse);
-            _rb.AddTorque(Random.onUnitSphere * 0.1f, ForceMode.Impulse);
+            BoostExplode();
         }
 
         // Determine animation state changes between flying and running
@@ -61,6 +60,30 @@ public class PlayerController : MonoBehaviour
         // After landing, ease the rotations so the sheep will run forward
         _animator.SetBool("Running", State == PlayerState.Running);
         _animator.SetBool("Flying", State == PlayerState.Flying);
+    }
+
+    public void BoostExplode()
+    {
+        var ps = PoolManager.Instance.ExplosionParticlePool.GetPooledObject();
+        ps.gameObject.transform.position = transform.position + Vector3.up * 0.5f;
+
+        var randomForwardForce = Vector3.forward * 6f + Vector3.up * 5f + Random.onUnitSphere;
+        randomForwardForce.Normalize();
+        ExplosionHit();
+        _rb.AddForce(randomForwardForce * Random.Range(BoostForceMin, BoostForceMax), ForceMode.Impulse);
+        _rb.AddTorque(Random.onUnitSphere * 0.1f, ForceMode.Impulse);
+    }
+
+    public void ObstacleExplode()
+    {
+        var ps = PoolManager.Instance.ExplosionParticlePool.GetPooledObject();
+        ps.gameObject.transform.position = transform.position + Vector3.up * 0.5f;
+
+        var randomForwardForce = Vector3.forward * 4f + Vector3.up * 5f + Random.onUnitSphere;
+        randomForwardForce.Normalize();
+        ExplosionHit();
+        _rb.AddForce(randomForwardForce * Random.Range(ExplosionForceMin, ExplosionForceMax), ForceMode.Impulse);
+        _rb.AddTorque(Random.onUnitSphere * 0.15f, ForceMode.Impulse);
     }
 
     public void ExplosionHit()
@@ -137,7 +160,14 @@ public class PlayerController : MonoBehaviour
             // End flying if we land feet first on a street
             if (other.gameObject.CompareTag("Street"))
             {
+                // Also give a small speed boost when landing
+                if (State == PlayerState.Flying)
+                {
+                    _rb.AddForce(Vector3.forward * 10f, ForceMode.Impulse);
+                }
+
                 State = PlayerState.Running;
+
             }
 
         }
@@ -148,6 +178,11 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("PlayerDeathTrigger"))
         {
             print("DEATH");
+        }
+
+        if (other.CompareTag("ExplosionTrigger"))
+        {
+            ObstacleExplode();
         }
     }
 }

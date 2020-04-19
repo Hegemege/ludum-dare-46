@@ -45,7 +45,6 @@ GameObject:
   - component: {fileID: 8377432055342029691}
   - component: {fileID: 4912276682433087710}
   - component: {fileID: 2776878200215636395}
-  - component: {fileID: 3431032336116406702}
   m_Layer: 0
   m_Name: Left
   m_TagString: Street
@@ -114,20 +113,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &3431032336116406702
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3390924102400910093}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &5130685329979116738
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +124,6 @@ GameObject:
   - component: {fileID: 1366949096086054437}
   - component: {fileID: 4319781425736165745}
   - component: {fileID: 2160469732848429906}
-  - component: {fileID: 5919417335157541792}
   m_Layer: 12
   m_Name: Base
   m_TagString: Street
@@ -208,20 +192,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &5919417335157541792
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5130685329979116738}
-  m_Material: {fileID: 13400000, guid: c8b2888d9b59e30479308e9f707d4b33, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &7927624527599257824
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,7 +277,6 @@ GameObject:
   - component: {fileID: 5201981978998390370}
   - component: {fileID: 1822564989958692897}
   - component: {fileID: 8594408210350146975}
-  - component: {fileID: 3601960694568656412}
   m_Layer: 0
   m_Name: Right
   m_TagString: Street
@@ -376,17 +345,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &3601960694568656412
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8598369663934703484}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
