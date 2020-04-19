@@ -978,7 +978,7 @@ GameObject:
   - component: {fileID: 3938365944648979559}
   - component: {fileID: 7346940243442762458}
   m_Layer: 8
-  m_Name: Trigger
+  m_Name: PlayerTrigger
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1263,8 +1263,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1413986064230376471}
-  _slowAcceleration: 1500
-  _slowAccelerationThreshold: 1
+  _slowAcceleration: 2000
+  _slowAccelerationThresholdHigh: 150
   State: 0
 --- !u!54 &3135899088231388689
 Rigidbody:
@@ -1281,7 +1281,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &3299387541447663145
 GameObject:
   m_ObjectHideFlags: 0

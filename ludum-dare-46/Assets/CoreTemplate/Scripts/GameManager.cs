@@ -7,14 +7,17 @@ public class GameManager : GenericManager<GameManager>, ILoadedManager
 {
     public DataStore DataStore;
 
-    // Store all resetable objects for the endless runner
-    public List<EndlessRunnerResetable> ResetableObjects;
+    public delegate void ResetEndlessObjectsEvent(Vector3 offset);
+    public delegate void KillEndlessObjectsEvent(Vector3 point, Vector3 normal);
+    public ResetEndlessObjectsEvent ResetEndlessObjects;
+    public KillEndlessObjectsEvent KillEndlessObjects;
 
     // Repeating environment cycle in units of space
-    public float ResetStepZ;
-    public float ResetThreshold = 500;
+    public float ResetStepZ = 10f;
+    public float ResetThreshold = 500f;
 
     public PlayerController PlayerController;
+    public CameraController CameraController;
 
     public void Initialize()
     {
@@ -23,9 +26,22 @@ public class GameManager : GenericManager<GameManager>, ILoadedManager
 
     public void PostInitialize() { }
 
-    public void ResetEndlessObjects()
+    public void TriggerReset()
     {
         // Figure out how many environment cycles all objects are moved back
+        var distance = PlayerController.GetDistance();
+        var cycles = Mathf.FloorToInt(distance.z / ResetStepZ);
 
+        var moveBackDistance = cycles * ResetStepZ;
+        var moveOffset = Vector3.forward * -1f * moveBackDistance;
+
+        // Move the player and all endless objects
+        PlayerController.transform.position += moveOffset;
+        ResetEndlessObjects(moveOffset);
+
+        // Reset objects that are too far back
+        KillEndlessObjects(CameraController.BehindKillPlane.position, Vector3.forward);
+        // Reset objects that have fallen below the level
+        KillEndlessObjects(new Vector3(0f, -5f, 0f), Vector3.up);
     }
 }

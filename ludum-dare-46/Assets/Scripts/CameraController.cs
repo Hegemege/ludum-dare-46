@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityUtilities;
 
-public class CameraController : MonoBehaviour
+public class CameraController : EndlessRunnerResetable
 {
     // Keep the camera positioned fixed distance from the center of the track
     // But keep it following the player
@@ -11,19 +11,46 @@ public class CameraController : MonoBehaviour
     // Thus we only need to move it forward (positive Z)
 
     private Vector3 _startPosition;
-    private Vector3 _targetStartPosition;
-
-    private Transform _target;
 
     private Vector3 _targetEasedPosition;
     [SerializeField]
     private float _easing = 0.05f;
 
+    [SerializeField]
+    private BoxCollider Spawner;
+
+    public Transform BehindKillPlane;
+
+    private Camera _camera;
+
+    private float _targetFarPlane;
+    [SerializeField]
+    private float _introAnimationLength;
+
     void Awake()
     {
-        _target = GameManager.Instance.PlayerController.transform;
+        GameManager.Instance.CameraController = this;
+        _camera = GetComponent<Camera>();
+        _targetFarPlane = _camera.farClipPlane;
+        StartCoroutine(AnimateFarClipPlane());
         _startPosition = transform.position;
-        _targetStartPosition = _target.position;
+
+        // Move the spawner at the start next to the camera
+        Spawner.transform.position = new Vector3(0f, 0f, transform.position.z);
+        Spawner.transform.rotation = Quaternion.identity;
+    }
+
+    private IEnumerator AnimateFarClipPlane()
+    {
+        var t = 0f;
+        while (t < _introAnimationLength)
+        {
+            var animationT = Mathf.Clamp01(t / _introAnimationLength);
+            _camera.farClipPlane = Mathf.Lerp(0f, _targetFarPlane, animationT);
+
+            t += Time.deltaTime;
+            yield return null;
+        }
     }
 
     void Update()
@@ -36,16 +63,22 @@ public class CameraController : MonoBehaviour
         // Follow player
         FollowPlayer();
 
-        // TODO: Easing
         transform.position = Vector3.Lerp(transform.position, _targetEasedPosition, _easing);
+
+        // Move the spawner back to x = 0, y = 0 always
+        // The spawner's position is lerped to the camera's far clip plane in order to spawn objects
+        var farClipPlane = _camera.farClipPlane;
+        var spawnerTargetPosition = new Vector3(0f, 0f, transform.position.z + farClipPlane);
+        Spawner.transform.position = Vector3.Lerp(Spawner.transform.position, spawnerTargetPosition, 0.1f);
+        Spawner.transform.rotation = Quaternion.identity;
     }
 
     private void FollowPlayer()
     {
-        // Get the Z distance of the player and track that
-        var zDistance = (_target.position - _targetStartPosition).z;
-        // Track height too
-        var yDistance = (_target.position - _targetStartPosition).y;
+        var targetDistance = GameManager.Instance.PlayerController.GetDistance();
+        // Track Z distance and height
+        var zDistance = targetDistance.z;
+        var yDistance = targetDistance.y;
 
         _targetEasedPosition = _startPosition + Vector3.forward * zDistance + Vector3.up * yDistance;
     }

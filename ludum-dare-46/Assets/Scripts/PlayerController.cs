@@ -17,10 +17,13 @@ public class PlayerController : MonoBehaviour
 
     public PlayerState State;
 
+    private Vector3 _startPosition;
+
     void Awake()
     {
         GameManager.Instance.PlayerController = this;
         _rb = GetComponentInChildren<Rigidbody>();
+        _startPosition = transform.position;
     }
 
     void Update()
@@ -45,5 +48,16 @@ public class PlayerController : MonoBehaviour
         {
             _rb.AddForce(Vector3.forward * _slowAcceleration * dt, ForceMode.Acceleration);
         }
+
+        // Trigger reset via GameManager if we go too far forward
+        if (GetDistance().z > GameManager.Instance.ResetThreshold)
+        {
+            GameManager.Instance.TriggerReset();
+        }
+    }
+
+    public Vector3 GetDistance()
+    {
+        return transform.position - _startPosition;
     }
 }

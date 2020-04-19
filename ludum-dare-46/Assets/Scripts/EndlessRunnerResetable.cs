@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityUtilities;
 
-public abstract class EndlessRunnerResetable : MonoBehaviour, IResetableBehaviour
+public class EndlessRunnerResetable : MonoBehaviour
 {
-    public abstract void Initialize();
-    public abstract void Reset();
+    protected virtual void OnEnable()
+    {
+        GameManager.Instance.ResetEndlessObjects += ResetEndlessPosition;
+    }
+
+    protected virtual void OnDisable()
+    {
+        GameManager.Instance.ResetEndlessObjects -= ResetEndlessPosition;
+    }
 
     public void ResetEndlessPosition(Vector3 offset)
     {

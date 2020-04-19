@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a61c008075e9a64495354beda53d264, type: 3}
   m_Name: DataStore
   m_EditorClassIdentifier: 
-  _tilePrefabs:
-  - {fileID: 0}
-  - {fileID: 7775579978628570456, guid: 5e8c2c8428e594248828bb4b3a1c2f73, type: 3}
-  - {fileID: 4541962268087309986, guid: d1baf6067d7b4024197fcc626d2e0701, type: 3}
+  EnvironmentSpawnables:
+  - {fileID: 4994818180955030091, guid: 7e592a40f9a0fbe448d2f069ecbe4316, type: 3}
