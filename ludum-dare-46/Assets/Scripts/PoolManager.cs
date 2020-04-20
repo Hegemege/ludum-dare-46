@@ -16,6 +16,11 @@ public class PoolManager : GenericManager<PoolManager>, ILoadedManager
     public ParticleSystemPool DustParticlePool;
     public ParticleSystemPool DeathParticlePool;
 
+    public AudioPool JumpAudioPool;
+    public AudioPool ExplosionAudioPool;
+    public AudioPool TrapHitAudioPool;
+    public AudioPool LoseAudioPool;
+
     public void Initialize()
     {
         if (!InitializeSingleton(this)) return;
@@ -41,6 +46,7 @@ public class PoolManager : GenericManager<PoolManager>, ILoadedManager
         ResetPool(ExplosionParticlePool);
         ResetPool(DustParticlePool);
         ResetPool(DeathParticlePool);
+        ResetPool(JumpAudioPool);
     }
 
     private void ResetPool<T>(GenericComponentPool<T> pool)

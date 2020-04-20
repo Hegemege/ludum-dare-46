@@ -32,7 +32,7 @@ public class DropShadowController : MonoBehaviour
         transform.position = new Vector3(PlayerController.transform.position.x, _startPosition.y, PlayerController.transform.position.z);
         // Set scale based on height
         var scaleT = Mathf.Clamp(PlayerController.transform.position.y / 5f, 0f, 1f);
-        var scale = Mathf.Lerp(1.5f, 0.5f, scaleT);
+        var scale = Mathf.Lerp(0.9f, 0.25f, scaleT);
         Marker.transform.localScale = Vector3.one * scale;
     }
 }

@@ -11,6 +11,9 @@ namespace UnityUtilities
         private AudioSource _source;
         private bool _played;
 
+        public float RandomPitchMin = 1f;
+        public float RandomPitchMax = 1f;
+
         void Awake()
         {
             _source = GetComponent<AudioSource>();
@@ -33,6 +36,7 @@ namespace UnityUtilities
                 else
                 {
                     _source.clip = Clips[Random.Range(0, Clips.Count)];
+                    _source.pitch = Random.Range(RandomPitchMin, RandomPitchMax);
                     _source.Play();
                     _played = true;
                 }

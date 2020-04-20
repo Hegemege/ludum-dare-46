@@ -46,7 +46,11 @@ public class PlayerController : MonoBehaviour
     public bool CanBoost;
 
     public GameObject EndCanvas;
+    public GameObject CreditCanvas;
     public TextMeshProUGUI DistanceText;
+
+    private Vector3 _endCanvasStartOffset;
+    private Vector3 _creditCanvasStartOffset;
 
 
     void Awake()
@@ -59,6 +63,9 @@ public class PlayerController : MonoBehaviour
         _flyingParticlesStartEmissionRate = _emissionModule.rateOverTime.constant;
         _startPosition = transform.position;
         State = PlayerState.Running;
+
+        _endCanvasStartOffset = EndCanvas.transform.localPosition;
+        _creditCanvasStartOffset = CreditCanvas.transform.localPosition;
     }
 
     void Update()
@@ -131,6 +138,8 @@ public class PlayerController : MonoBehaviour
     public void ExplosionHit()
     {
         if (State == PlayerState.Dead) return;
+
+        PoolManager.Instance.ExplosionAudioPool.GetPooledObject();
 
         if (State == PlayerState.Running)
         {
@@ -222,6 +231,12 @@ public class PlayerController : MonoBehaviour
                     var ps = PoolManager.Instance.DustParticlePool.GetPooledObject();
                     ps.gameObject.transform.position = transform.position + Vector3.forward * 0.5f;
                 }
+
+                // Boing
+                if (Mathf.Abs(other.relativeVelocity.y) > 4f)
+                {
+                    PoolManager.Instance.JumpAudioPool.GetPooledObject();
+                }
             }
 
         }
@@ -229,9 +244,12 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        var dead = false;
+        // If player manages to escape
         if (other.CompareTag("PlayerDeathTrigger"))
         {
-            print("DEATH");
+            transform.position = new Vector3(0f, 1f, transform.position.z);
+            dead = true;
         }
 
         if (other.CompareTag("ExplosionTrigger"))
@@ -248,9 +266,15 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (other.CompareTag("Trap"))
+        if (other.CompareTag("Trap") || dead)
         {
-            other.GetComponentInParent<TrapController>().Spring();
+            var trap = other.GetComponentInParent<TrapController>();
+            if (trap != null)
+            {
+                PoolManager.Instance.TrapHitAudioPool.GetPooledObject();
+                trap.Spring();
+            }
+
             // Stop player
             State = PlayerState.Dead;
             _rb.velocity = Vector3.zero;
@@ -260,6 +284,15 @@ public class PlayerController : MonoBehaviour
 
             EndCanvas.SetActive(true);
             EndCanvas.transform.rotation = Quaternion.identity;
+            EndCanvas.transform.position = transform.position + _endCanvasStartOffset;
+            EndCanvas.transform.position = new Vector3(_endCanvasStartOffset.x, _endCanvasStartOffset.y, EndCanvas.transform.position.z);
+
+            CreditCanvas.SetActive(true);
+            CreditCanvas.transform.rotation = Quaternion.identity;
+            CreditCanvas.transform.position = transform.position + _creditCanvasStartOffset;
+            CreditCanvas.transform.position = new Vector3(_creditCanvasStartOffset.x, _creditCanvasStartOffset.y, CreditCanvas.transform.position.z);
+
+            PoolManager.Instance.LoseAudioPool.GetPooledObject();
 
             var totalDistance = GameManager.Instance.DistanceTracker + (transform.position - _startPosition).z;
             DistanceText.text = Mathf.FloorToInt(totalDistance).ToString() + "m";
