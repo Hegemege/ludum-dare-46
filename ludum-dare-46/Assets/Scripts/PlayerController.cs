@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
         var ps = PoolManager.Instance.ExplosionParticlePool.GetPooledObject();
         ps.gameObject.transform.position = transform.position + Vector3.up * 0.5f;
 
-        var randomForwardForce = Vector3.forward * 6f + Vector3.up * 5f + Random.onUnitSphere;
+        var randomForwardForce = Vector3.forward * 5f + Vector3.up * 5f + Random.onUnitSphere;
         randomForwardForce.Normalize();
         ExplosionHit();
         _rb.AddForce(randomForwardForce * Random.Range(BoostForceMin, BoostForceMax), ForceMode.Impulse);
@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
         var ps = PoolManager.Instance.ExplosionParticlePool.GetPooledObject();
         ps.gameObject.transform.position = transform.position + Vector3.up * 0.5f;
 
-        var randomForwardForce = Vector3.forward * 4f + Vector3.up * 5f + Random.onUnitSphere;
+        var randomForwardForce = Vector3.forward * 4f + Vector3.up * 4f + Random.onUnitSphere;
         randomForwardForce.Normalize();
         ExplosionHit();
         _rb.AddForce(randomForwardForce * Random.Range(ExplosionForceMin, ExplosionForceMax), ForceMode.Impulse);
@@ -170,7 +170,7 @@ public class PlayerController : MonoBehaviour
         // Horizontal steering
         var horizontalInput = Input.GetAxis("Horizontal");
         // Running allows better steering
-        var steeringScale = State == PlayerState.Running ? 2f : 1f;
+        var steeringScale = State == PlayerState.Running ? 3f : 2.5f;
         _rb.AddForce(Vector3.right * horizontalInput * _steeringForce * steeringScale * dt, ForceMode.Acceleration);
 
         // Time since flying started - flying can't end too early
@@ -285,12 +285,12 @@ public class PlayerController : MonoBehaviour
             EndCanvas.SetActive(true);
             EndCanvas.transform.rotation = Quaternion.identity;
             EndCanvas.transform.position = transform.position + _endCanvasStartOffset;
-            EndCanvas.transform.position = new Vector3(_endCanvasStartOffset.x, _endCanvasStartOffset.y, EndCanvas.transform.position.z);
+            EndCanvas.transform.position = new Vector3(_endCanvasStartOffset.x, transform.position.y + _endCanvasStartOffset.y, EndCanvas.transform.position.z);
 
             CreditCanvas.SetActive(true);
             CreditCanvas.transform.rotation = Quaternion.identity;
             CreditCanvas.transform.position = transform.position + _creditCanvasStartOffset;
-            CreditCanvas.transform.position = new Vector3(_creditCanvasStartOffset.x, _creditCanvasStartOffset.y, CreditCanvas.transform.position.z);
+            CreditCanvas.transform.position = new Vector3(_creditCanvasStartOffset.x, transform.position.y + _creditCanvasStartOffset.y, CreditCanvas.transform.position.z);
 
             PoolManager.Instance.LoseAudioPool.GetPooledObject();
 

@@ -21,6 +21,8 @@ public class PoolManager : GenericManager<PoolManager>, ILoadedManager
     public AudioPool TrapHitAudioPool;
     public AudioPool LoseAudioPool;
 
+    public ObstacleSpawnablePool AirTrapPool;
+
     public void Initialize()
     {
         if (!InitializeSingleton(this)) return;

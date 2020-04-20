@@ -60,8 +60,23 @@ public class StreetController : MonoBehaviour
                 var offset = new Vector3(offsetX, 0f, offsetZ);
 
                 obstacle.transform.position = transform.position + position + offset;
+                obstacle.transform.rotation = Quaternion.identity;
+            }
+
+            // Spawn a trap high in the air
+            if (Random.Range(0f, 1f) > 0.92f)
+            {
+                var obstacle = PoolManager.Instance.AirTrapPool.GetPooledObject();
+                var offsetX = Random.Range(-1f, 1f);
+                var offsetZ = Random.Range(-1f, 1f);
+                var offsetY = Random.Range(25f, 50f);
+                var offset = new Vector3(offsetX, offsetY, offsetZ);
+
+                obstacle.gameObject.transform.position = transform.position + position + offset;
+                obstacle.gameObject.transform.rotation = Random.rotation;
             }
         }
+
 
     }
 }

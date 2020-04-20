@@ -208,6 +208,7 @@ MonoBehaviour:
   ExplosionAudioPool: {fileID: 7959860275795271576}
   TrapHitAudioPool: {fileID: 8898004714729505151}
   LoseAudioPool: {fileID: 7661797246841909393}
+  AirTrapPool: {fileID: 5024087488969887530}
 --- !u!1 &2368936679927147312
 GameObject:
   m_ObjectHideFlags: 0

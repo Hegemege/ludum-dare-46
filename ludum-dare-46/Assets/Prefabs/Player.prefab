@@ -5095,13 +5095,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 649281326121935679}
-    characterCount: 56
+    characterCount: 0
     spriteCount: 0
-    spaceCount: 13
-    wordCount: 11
+    spaceCount: 0
+    wordCount: 0
     linkCount: 0
-    lineCount: 7
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -5471,13 +5471,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 7713080478490042947}
-    characterCount: 25
+    characterCount: 0
     spriteCount: 0
-    spaceCount: 3
-    wordCount: 4
+    spaceCount: 0
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -5966,13 +5966,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 8544882412304840799}
-    characterCount: 76
+    characterCount: 0
     spriteCount: 0
-    spaceCount: 13
-    wordCount: 13
+    spaceCount: 0
+    wordCount: 0
     linkCount: 0
-    lineCount: 5
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -6516,16 +6516,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 1413986064230376471}
   _slowAcceleration: 2000
-  _slowAccelerationThresholdHigh: 150
+  _slowAccelerationThresholdHigh: 450
   State: 0
-  BoostForceMin: 0
-  BoostForceMax: 0
-  ExplosionForceMin: 0
-  ExplosionForceMax: 0
+  BoostForceMin: 10
+  BoostForceMax: 14
+  ExplosionForceMin: 6
+  ExplosionForceMax: 10
   StreetLayerMask:
     serializedVersion: 2
-    m_Bits: 0
-  _steeringForce: 0
+    m_Bits: 4096
+  _steeringForce: 75
   CanBoost: 0
   EndCanvas: {fileID: 1161052234524270129}
   CreditCanvas: {fileID: 2061312962490655182}
@@ -6867,13 +6867,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 4941800158690169541}
-    characterCount: 40
+    characterCount: 0
     spriteCount: 0
-    spaceCount: 6
-    wordCount: 7
+    spaceCount: 0
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -7787,13 +7787,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2651834053349897658}
-    characterCount: 5
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
