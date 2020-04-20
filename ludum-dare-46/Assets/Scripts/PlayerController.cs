@@ -91,16 +91,18 @@ public class PlayerController : MonoBehaviour
             _emissionModule.rateOverTime = 0f;
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+            return;
+        }
+
         if (State == PlayerState.Dead)
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
                 GameManager.Instance.ResetLevel();
                 SceneManager.LoadScene("main");
-            }
-            else if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                Application.Quit();
             }
 
             return;
