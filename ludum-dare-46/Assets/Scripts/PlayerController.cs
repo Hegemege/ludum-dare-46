@@ -93,7 +93,9 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+#if !UNITY_WEBGL
             Application.Quit();
+#endif
             return;
         }
 
