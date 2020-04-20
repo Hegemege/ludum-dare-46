@@ -93,11 +93,14 @@ public class PlayerController : MonoBehaviour
 
         if (State == PlayerState.Dead)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 GameManager.Instance.ResetLevel();
                 SceneManager.LoadScene("main");
-                return;
+            }
+            else if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
             }
 
             return;

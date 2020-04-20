@@ -5024,9 +5024,12 @@ MonoBehaviour:
 
 
 
-    Press Esc
+    Press R
 
-    to get back on your feet!'
+    to get back on your feet!
+
+    (Esc
+    to quit)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c49831f3b7ab384488933cee1abf419, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 4249d7b90ae2a93489bfb1e3996e6b6a, type: 2}
@@ -5095,13 +5098,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 649281326121935679}
-    characterCount: 0
+    characterCount: 68
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 0
+    spaceCount: 16
+    wordCount: 14
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 8
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -7787,13 +7790,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2651834053349897658}
-    characterCount: 0
+    characterCount: 5
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
